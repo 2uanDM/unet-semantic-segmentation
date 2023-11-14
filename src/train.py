@@ -7,6 +7,11 @@ from model.loss import CEDiceLoss
 from dataset.dataset import NeoPolypDataset
 from torch.utils.data import DataLoader, random_split
 
+# current path of this file
+dirname = os.path.dirname(os.path.dirname(__file__))
+
+print(f"Current path: {dirname}")
+
 def weights_init(model):
     if isinstance(model, nn.Linear):
         # Xavier Distribution
@@ -97,11 +102,14 @@ if __name__ == "__main__":
     # Learning rate scheduler
     learing_rate_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.1)
     
-    print(os.getcwd())
+    # current path of this file
+    dirname = os.path.dirname(__file__)
+    
+    print(f"Current path: {dirname}")
     
     # Dataset
-    train_dataset = NeoPolypDataset(img_dir=os.path.join(os.getcwd(), 'train', 'train'),
-                                    gt_img_dir=os.path.join(os.getcwd(), 'train_gt', 'train_gt'),
+    train_dataset = NeoPolypDataset(img_dir=os.path.join(dirname, 'train', 'train'),
+                                    gt_img_dir=os.path.join(dirname, 'train_gt', 'train_gt'),
                                     status='train')
     
     train_dataset, valid_dataset = random_split(train_dataset, [int(len(train_dataset)*0.8), len(train_dataset)-int(len(train_dataset)*0.8)])
