@@ -3,7 +3,6 @@ import torch.nn as nn
 from torchvision.models import resnet50, ResNet50_Weights
 
 
-
 class ConvBlock(nn.Module):
     def __init__(self, in_channels, out_channels, padding=1, kernel_size=3, stride=1, with_nonlinearity=True):
         super().__init__()
@@ -33,7 +32,7 @@ class BottleNeckBlock(nn.Module):
         return self.BottleNeckBlock(x)
 
 
-class DecoderBLock(nn.Module):
+class DecoderBlock(nn.Module):
     """
     Up block that encapsulates one up-sampling step which consists of Upsample -> ConvBlock -> ConvBlock
     """
@@ -82,12 +81,12 @@ class ResNet50_UNET(nn.Module):
                 down_blocks.append(bottleneck)
         self.down_blocks = nn.ModuleList(down_blocks)
         self.BottleNeckBlock = BottleNeckBlock(2048, 2048)
-        up_blocks.append(DecoderBLock(2048, 1024))
-        up_blocks.append(DecoderBLock(1024, 512))
-        up_blocks.append(DecoderBLock(512, 256))
-        up_blocks.append(DecoderBLock(in_channels=128 + 64, out_channels=128,
+        up_blocks.append(DecoderBlock(2048, 1024))
+        up_blocks.append(DecoderBlock(1024, 512))
+        up_blocks.append(DecoderBlock(512, 256))
+        up_blocks.append(DecoderBlock(in_channels=128 + 64, out_channels=128,
                                                     up_conv_in_channels=256, up_conv_out_channels=128))
-        up_blocks.append(DecoderBLock(in_channels=64 + 3, out_channels=64,
+        up_blocks.append(DecoderBlock(in_channels=64 + 3, out_channels=64,
                                                     up_conv_in_channels=128, up_conv_out_channels=64))
 
         self.up_blocks = nn.ModuleList(up_blocks)
@@ -122,6 +121,6 @@ class ResNet50_UNET(nn.Module):
         
 if __name__=='__main__':
     model = ResNet50_UNET()
-    inp = torch.rand((2, 3, 512, 512))
+    inp = torch.rand((2, 3, 256, 256))
     out = model(inp)
     print(out.shape)

@@ -1,6 +1,6 @@
 import numpy as np
 from torch.utils.data import Dataset
-from transform import train_transform, val_transform, test_transform
+from dataset.transform import train_transform, val_transform, test_transform
 import os 
 import cv2
 
