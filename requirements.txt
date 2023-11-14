@@ -1,0 +1,9 @@
+torchsummary
+pandas
+numpy
+matplotlib
+opencv-python
+Pillow
+wandb
+torch 
+torchvision
