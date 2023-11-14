@@ -97,9 +97,11 @@ if __name__ == "__main__":
     # Learning rate scheduler
     learing_rate_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.1)
     
+    print(os.getcwd())
+    
     # Dataset
-    train_dataset = NeoPolypDataset(img_dir='../train/train',
-                                    gt_img_dir='../train_gt/train_gt',
+    train_dataset = NeoPolypDataset(img_dir=os.path.join(os.getcwd(), 'train', 'train'),
+                                    gt_img_dir=os.path.join(os.getcwd(), 'train_gt', 'train_gt'),
                                     status='train')
     
     train_dataset, valid_dataset = random_split(train_dataset, [int(len(train_dataset)*0.8), len(train_dataset)-int(len(train_dataset)*0.8)])
