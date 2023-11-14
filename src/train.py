@@ -1,10 +1,11 @@
+import os
 import time
 import torch.nn as nn
 import torch
 from model.unet_enhanced import ResNet50_UNET
 from model.loss import CEDiceLoss
 from dataset.dataset import NeoPolypDataset
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, random_split
 
 def weights_init(model):
     if isinstance(model, nn.Linear):
@@ -97,12 +98,11 @@ if __name__ == "__main__":
     learing_rate_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.1)
     
     # Dataset
-    train_dataset = NeoPolypDataset(img_dir=r'C:\Users\hokag\Documents\GitHub\unet-semantic-segmentation\train\train', 
-                                    gt_img_dir=r'C:\Users\hokag\Documents\GitHub\unet-semantic-segmentation\train_gt\train_gt',
+    train_dataset = NeoPolypDataset(img_dir='../train/train',
+                                    gt_img_dir='../train_gt/train_gt',
                                     status='train')
-    valid_dataset = NeoPolypDataset(img_dir=r'C:\Users\hokag\Documents\GitHub\unet-semantic-segmentation\train\train', 
-                                    gt_img_dir=r'C:\Users\hokag\Documents\GitHub\unet-semantic-segmentation\train_gt\train_gt',
-                                    status='val')
+    
+    train_dataset, valid_dataset = random_split(train_dataset, [int(len(train_dataset)*0.8), len(train_dataset)-int(len(train_dataset)*0.8)])
     
     # Dataloader
     train_dataloader = DataLoader(train_dataset, batch_size=25, shuffle=True, num_workers=2)
