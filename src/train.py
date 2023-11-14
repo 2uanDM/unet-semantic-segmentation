@@ -102,11 +102,6 @@ if __name__ == "__main__":
     # Learning rate scheduler
     learing_rate_scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=10, gamma=0.1)
     
-    # current path of this file
-    dirname = os.path.dirname(__file__)
-    
-    print(f"Current path: {dirname}")
-    
     # Dataset
     train_dataset = NeoPolypDataset(img_dir=os.path.join(dirname, 'train', 'train'),
                                     gt_img_dir=os.path.join(dirname, 'train_gt', 'train_gt'),
