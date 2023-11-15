@@ -53,7 +53,8 @@ model.eval()
 
 test_dir = '/kaggle/input/bkai-igh-neopolyp/test/test'
 
-for img_name in os.listdir(test_dir):
+for idx, img_name in enumerate(os.listdir(test_dir)):
+    print(f'Predicted {idx+1}/400 ...')
     test_img_path = os.path.join(test_dir, img_name)
     
     img = cv2.imread(test_img_path)
