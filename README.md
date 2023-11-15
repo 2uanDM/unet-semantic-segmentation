@@ -5,6 +5,10 @@ Student ID: 20210710
 
 # Inferencing guideline
 
+Step 1:
+Add data "bkai-igh-neopolyp" to /kaggle/input/
+
+Step 2:
 First, we need to download the "model.pth" from Google Drive and put it in "/kaggle/working/"
 
 ```python
@@ -23,26 +27,11 @@ with open(os.path.join(save_dir, 'model.pth'), 'wb') as f:
 print('Save "model.pth" successfully!')
 ```
 
-Cloning the repository
-
-```python
-!git clone https://github.com/2uanDM/unet-semantic-segmentation.git
-```
-
-Copy the "model.pth" to the repository
-
-```python
-!cp /kaggle/working/model.pth /kaggle/working/unet-semantic-segmentation/
-```
-
-Importing the necessary libraries
-
-```python
-!pip install -r /kaggle/working/unet-semantic-segmentation/requirements.txt
-```
-
 Inferring
 
 ```python
+!git clone https://github.com/2uanDM/unet-semantic-segmentation.git
+!cp /kaggle/working/model.pth /kaggle/working/unet-semantic-segmentation/
+!pip install -r /kaggle/working/unet-semantic-segmentation/requirements.txt
 !python /kaggle/working/unet-semantic-segmentation/infer.py
 ```
