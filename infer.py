@@ -80,7 +80,8 @@ for idx, img_name in enumerate(os.listdir(test_dir)):
     rgb_mask = cv2.cvtColor(rgb_mask, cv2.COLOR_RGB2BGR)
     
     # Save the mask
-    save_dir = os.makedirs('/kaggle/working/predict_mask', exist_ok=True)
+    save_dir = '/kaggle/working/predict_mask'
+    os.makedirs(save_dir, exist_ok=True)
     save_path = os.path.join(save_dir, img_name)
     cv2.imwrite(save_path, rgb_mask)
 
