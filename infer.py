@@ -54,7 +54,7 @@ model.eval()
 test_dir = '/kaggle/input/bkai-igh-neopolyp/test/test'
 
 for idx, img_name in enumerate(os.listdir(test_dir)):
-    print(f'Predicted {idx+1}/400 ...')
+    print(f'Predicted {idx+1}/200 ...')
     test_img_path = os.path.join(test_dir, img_name)
     
     img = cv2.imread(test_img_path)
@@ -88,7 +88,7 @@ for idx, img_name in enumerate(os.listdir(test_dir)):
 # Convert the mask to string for submission
 result = mask2string('/kaggle/working/predict_mask')
 
-df = pd.DataFrame(result, colum = ['Id', 'Expected'])
+df = pd.DataFrame(result, column = ['Id', 'Expected'])
 df['Id'] = result['idx']
 df['Expected'] = result['result_str']
 df.to_csv('/kaggle/working/submission.csv', index=False)
