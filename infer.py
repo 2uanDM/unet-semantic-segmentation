@@ -88,10 +88,10 @@ for idx, img_name in enumerate(os.listdir(test_dir)):
 # Convert the mask to string for submission
 result = mask2string('/kaggle/working/predict_mask')
 
-df = pd.DataFrame(result, column = ['Id', 'Expected'])
+df = pd.DataFrame(result, columns = ['Id', 'Expected'])
 df['Id'] = result['idx']
 df['Expected'] = result['result_str']
-df.to_csv('/kaggle/working/submission.csv', index=False)
+df.to_csv('/kaggle/working/quan_submission.csv', index=False)
 
 print('--- Finish ---')
 
