@@ -34,7 +34,7 @@ color_mapping = {
     2: (0, 255, 0) # Non-neoplastic polyp
 }
 
-def mask_to_rgb(mask):
+def mask_to_rgb(mask, color_mapping):
     output = np.zeros((mask.shape[0], mask.shape[1], 3))
     for key in color_mapping.keys():
         output[mask == key] = color_mapping[key]
@@ -76,8 +76,7 @@ for idx, img_name in enumerate(os.listdir(test_dir)):
     out_mask = np.argmax(out_mask, axis=2)
     
     # Convert the mask to RGB
-    out_mask = np.zeros((*out_mask.shape, 3)).astype(np.uint8)
-    rgb_mask = mask_to_rgb(out_mask)
+    rgb_mask = mask_to_rgb(out_mask, color_mapping)
     rgb_mask = cv2.cvtColor(rgb_mask, cv2.COLOR_RGB2BGR)
     
     # Save the mask
