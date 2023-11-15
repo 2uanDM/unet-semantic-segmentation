@@ -32,6 +32,6 @@ Inferring
 ```python
 !git clone https://github.com/2uanDM/unet-semantic-segmentation.git
 !cp /kaggle/working/model.pth /kaggle/working/unet-semantic-segmentation/
-!pip install -r /kaggle/working/unet-semantic-segmentation/requirements.txt
+!pip install -q segmentation_models_pytorch
 !python /kaggle/working/unet-semantic-segmentation/infer.py
 ```

@@ -29,9 +29,9 @@ check_point = torch.load('model.pth', map_location=device)
 model.load_state_dict(check_point['model'])
 
 color_mapping = {
-    0: [0, 0, 0], # Background
-    1: [0, 255, 0], # Neoplastic polyp
-    2: [255, 0, 0] # Non-neoplastic polyp
+    0: (0, 0, 0), # Background
+    1: (255, 0, 0), # Neoplastic polyp
+    2: (0, 255, 0) # Non-neoplastic polyp
 }
 
 def mask_to_rgb(mask):
