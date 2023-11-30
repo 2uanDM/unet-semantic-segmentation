@@ -1,0 +1,9 @@
+<RCC>
+  <qresource>
+    <file>icons/app.ico</file>
+    <file>icons/homepage/listing.png</file>
+    <file>icons/homepage/main_logo.png</file>
+    <file>icons/homepage/merchfox.png</file>
+    <file>icons/homepage/tracking.png</file>
+  </qresource>
+</RCC>
